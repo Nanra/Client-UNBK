@@ -1,5 +1,6 @@
 import RPi.GPIO as GPIO
 import time
+global str
 
 pinbtnValid   = 31
 pinbtnNext    = 29
@@ -42,7 +43,10 @@ def braille():
 	tom5 = str(GPIO.input(pinbtnLima))
 	tom6 = str(GPIO.input(pinbtnEnam))
 	n = tom3 + tom2 + tom1 + tom4 + tom5 + tom6
-	return n
+	if n == "111111":
+		pass
+	else:
+		return n
 
 def abjad(n="111111",x=""):
 	if (n=="110111"):
@@ -131,9 +135,38 @@ def angka(n="111111",x=""):
 		x = "SALAH"
 	return x
 
+def bacaInputHuruf():
+        baca = braille()
+        if baca is None:
+				baca
+        else:
+			return baca
+
+def bacaInputAngka():
+	    baca = braille()
+	    if baca is None:
+		        baca
+	    else:
+		        return baca
+
+def bacaHuruf():
+	isi = abjad(n=bacaInputHuruf())
+	return isi
+	
+def bacaAngka():
+	isi = angka(n=bacaInputAngka())
+	return isi
+
 while True:
-	# print "Masukkan Karakter : " ,braille()
-	# print braille()
-	# print "\n"
-	print abjad(n=braille())
-	time.sleep(0.05)
+	#huruf = bacaHuruf() # Baca Huruf
+	#if huruf == "NULL":
+	#	bacaHuruf()
+	#else:
+	#	print huruf
+	
+	isiangka = bacaAngka() # Baca Angka
+	if isiangka == "SALAH":
+		bacaAngka()
+	else:
+		print isiangka
+	time.sleep(0.3)
