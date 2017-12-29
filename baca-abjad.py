@@ -153,6 +153,7 @@ while True:
         print huruf,
     if tombolEnter is pressed:
             antrian.append(isivalid)
+            isivalid = ""
             print "Antrian = ", antrian
 
     time.sleep(0.3)
