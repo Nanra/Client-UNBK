@@ -1,3 +1,5 @@
+#! /usr/bin/python
+
 import RPi.GPIO as GPIO
 import time
 
@@ -24,7 +26,7 @@ while i < len(pinbtn):
         GPIO.setup(pinbtn[i], GPIO.IN,pull_up_down=GPIO.PUD_UP)
         i+=1
 
-print "OK MAS BRO"
+print "All Pin OK"
 def braille(): # Fungsi Baca Push Button Dan Konversi Ke Braille
         tom1 = str(GPIO.input(pinbtnSatu))
         tom2 = str(GPIO.input(pinbtnDua))

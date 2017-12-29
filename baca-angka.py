@@ -1,6 +1,6 @@
+#! /usr/bin/python
 import RPi.GPIO as GPIO
 import time
-global str
 
 pinbtnValid   = 31
 pinbtnNext    = 29
