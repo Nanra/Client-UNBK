@@ -153,6 +153,9 @@ while True:
             isivalid = huruf
             print "Isi Valid = ", isivalid
         print huruf,
+    if (tombolEnter is pressed) & (isivalid is ""):
+        print "Anda Belum Mengisi Huruf"
+        continue
     if tombolEnter is pressed:
         antrian.append(isivalid)
         isivalid = ""
