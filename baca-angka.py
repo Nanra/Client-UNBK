@@ -26,9 +26,10 @@ i = 0
 while i < len(pinbtn):
 	GPIO.setup(pinbtn[i], GPIO.IN,pull_up_down=GPIO.PUD_UP)
 	i+=1
+print "All Pin OK\n"
 
-print "Test Pembacaan Angka"
-print "Masukkan Angka"
+print "Test Pembacaan Angka\n"
+print "Masukkan Angka\n"
 
 ##Test Button
 #while True:

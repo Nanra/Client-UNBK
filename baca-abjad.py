@@ -36,6 +36,8 @@ while i < len(pinbtn):
 #tombolPrev = str(GPIO.input(pinbtnPrev))
 #tombolDelete = str(GPIO.input(pinbtnDelete))
 
+print "All Pin OK\n"
+
 print "Test Pembacaan Huruf\n"
 print "Masukkan Huruf\n"
 
