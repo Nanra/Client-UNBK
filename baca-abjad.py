@@ -131,11 +131,15 @@ def bacaHuruf():
 	return isi
 
 while True:
+	tombolValidasi = str(GPIO.input(pinbtnValid))
 	huruf = bacaHuruf() # Baca Huruf
 	if huruf == "NULL":
 		bacaHuruf()
 		
 	else:
+		if tombolValidasi == "0" :
+			isivalid = huruf
+			print "Isi Valid = ", isivalid
 		print huruf,
 	
 	time.sleep(0.3)
