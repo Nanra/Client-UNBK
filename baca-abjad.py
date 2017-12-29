@@ -26,6 +26,7 @@ while i < len(pinbtn):
 	i+=1
 
 print "OK MAS BRO"
+print "Masukkan Huruf"
 
 ##Test Button
 #while True:
@@ -138,9 +139,9 @@ def angka(n="111111",x=""):
 def bacaInputHuruf():
         baca = braille()
         if baca is None:
-				baca
+                baca
         else:
-			return baca
+                return baca
 
 def bacaInputAngka():
 	    baca = braille()
@@ -158,15 +159,15 @@ def bacaAngka():
 	return isi
 
 while True:
-	#huruf = bacaHuruf() # Baca Huruf
-	#if huruf == "NULL":
-	#	bacaHuruf()
-	#else:
-	#	print huruf
-	
-	isiangka = bacaAngka() # Baca Angka
-	if isiangka == "SALAH":
-		bacaAngka()
+	huruf = bacaHuruf() # Baca Huruf
+	if huruf == "NULL":
+		bacaHuruf()
 	else:
-		print isiangka
+		print huruf,
+	
+##	isiangka = bacaAngka() # Baca Angka
+##	if isiangka == "SALAH":
+##		bacaAngka()
+##	else:
+##		print isiangka
 	time.sleep(0.3)
