@@ -1,5 +1,6 @@
 #! /usr/bin/python
 
+##Section for testing logical input buttons
 import RPi.GPIO as GPIO
 import time
 

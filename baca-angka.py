@@ -1,4 +1,6 @@
 #! /usr/bin/python
+
+##Section for reading braille convert to number
 import RPi.GPIO as GPIO
 import time
 

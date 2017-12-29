@@ -1,3 +1,7 @@
+#! /usr/bin/python
+
+##Section for testing all buttons function
+
 import RPi.GPIO as GPIO
 import time
 
