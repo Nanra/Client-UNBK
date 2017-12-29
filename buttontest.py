@@ -1,6 +1,6 @@
 #! /usr/bin/python
 
-##Section for testing all buttons function
+## Section for testing all buttons function
 
 import RPi.GPIO as GPIO
 import time
@@ -22,7 +22,7 @@ pinbtn        = [pinbtnValid, pinbtnNext, pinbtnPrev, pinbtnDelete, pinbtnEnter,
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-#Deklarasi Button Huruf Sebagai OUTPUT
+# Deklarasi Button Huruf Sebagai OUTPUT
 i = 0
 while i < len(pinbtn):
 	GPIO.setup(pinbtn[i], GPIO.IN,pull_up_down=GPIO.PUD_UP)
@@ -37,7 +37,7 @@ print "OK MAS BRO"
 #		print "Tombol Ditekan"
 #		time.sleep(0.3)
 
-#Fungsi Baca Kode Braille
+# Fungsi Baca Kode Braille
 def braille():
 	tom1 = str(GPIO.input(pinbtnSatu))
 	tom2 = str(GPIO.input(pinbtnDua))
