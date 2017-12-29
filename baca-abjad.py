@@ -121,7 +121,6 @@ def abjad(n="111111", x=""):
         x = "-"
     else:
         x = "NULL"
-    # os.system("ogg123 -q audio/wrong.ogg")
     return x
 
 
@@ -140,7 +139,7 @@ def bacaHuruf():
 
 while True:
     tombolValidasi = str(GPIO.input(pinbtnValid))
-    huruf = bacaHuruf()  # Baca Huruf
+    huruf = bacaHuruf()  #Baca Huruf
     if huruf == "NULL":
         bacaHuruf()
 
