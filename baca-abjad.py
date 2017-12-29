@@ -6,6 +6,8 @@ import RPi.GPIO as GPIO
 import time
 
 pressed = "0"
+isivalid = ""
+antrian = []
 pinbtnValid = 31
 pinbtnNext = 29
 pinbtnPrev = 32
@@ -139,7 +141,8 @@ def bacaHuruf():
 
 while True:
     tombolValidasi = str(GPIO.input(pinbtnValid))
-    huruf = bacaHuruf()  #Baca Huruf
+    tombolEnter = str(GPIO.input(pinbtnEnter))
+    huruf = bacaHuruf()  # Baca Huruf
     if huruf == "NULL":
         bacaHuruf()
 
@@ -148,5 +151,8 @@ while True:
             isivalid = huruf
             print "Isi Valid = ", isivalid
         print huruf,
+    if tombolEnter is pressed:
+            antrian.append(isivalid)
+            print "Antrian = ", antrian
 
     time.sleep(0.3)
