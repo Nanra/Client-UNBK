@@ -5,6 +5,7 @@
 import RPi.GPIO as GPIO
 import time
 
+pressed = "0"
 pinbtnValid   = 31
 pinbtnNext    = 29
 pinbtnPrev    = 32
@@ -137,9 +138,10 @@ while True:
 		bacaHuruf()
 		
 	else:
-		if tombolValidasi == "0" :
+		if tombolValidasi == pressed :
 			isivalid = huruf
 			print "Isi Valid = ", isivalid
 		print huruf,
 	
 	time.sleep(0.3)
+	
