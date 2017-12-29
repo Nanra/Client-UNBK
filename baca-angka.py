@@ -25,8 +25,8 @@ while i < len(pinbtn):
 	GPIO.setup(pinbtn[i], GPIO.IN,pull_up_down=GPIO.PUD_UP)
 	i+=1
 
-print "Test Pembacaan Huruf"
-print "Masukkan Huruf"
+print "Test Pembacaan Angka"
+print "Masukkan Angka"
 
 ##Test Button
 #while True:
@@ -48,67 +48,6 @@ def braille():
 		pass
 	else:
 		return n
-
-def abjad(n="111111",x=""):
-	if (n=="110111"):
-		x = "A"
-	elif (n=="100111"):
-		x = "B"
-	elif (n=="110011"):
-		x = "C"
-	elif (n=="110001"):
-		x = "D"
-	elif (n=="110101"):
-		x = "E"
-	elif (n=="100011"):
-		x = "F"
-	elif (n=="100001"):
-		x = "G"
-	elif (n=="100101"):
-		x = "H"
-	elif (n=="101011"):
-		x = "I"
-	elif (n=="101001"):
-		x = "J"
-	elif (n=="010111"):
-		x = "K"
-	elif (n=="000111"):
-		x = "L"
-	elif (n=="010011"):
-		x = "M"
-	elif (n=="010001"):
-		x = "N"
-	elif (n=="010101"):
-		x = "O"
-	elif (n=="000011"):
-		x = "P"
-	elif (n=="000001"):
-		x = "Q"
-	elif (n=="000101"):
-		x = "R"
-	elif (n=="001011"):
-		x = "S"
-	elif (n=="001001"):
-		x = "T"
-	elif (n=="010110"):
-		x = "U"
-	elif (n=="000110"):
-		x = "V"
-	elif (n=="101000"):
-		x = "W"
-	elif (n=="010010"):
-		x = "X"
-	elif (n=="010000"):
-		x = "Y"
-	elif (n=="010100"):
-		x = "Z"
-	elif (n=="011110"):
-		x = "-"
-	else:
-		x = "NULL"
-		#os.system("ogg123 -q audio/wrong.ogg")
-	return x
-
 
 #Deklarasi Angka
 def angka(n="111111",x=""):
@@ -136,12 +75,6 @@ def angka(n="111111",x=""):
 		x = "SALAH"
 	return x
 
-def bacaInputHuruf():
-        baca = braille()
-        if baca is None:
-                baca
-        else:
-                return baca
 
 def bacaInputAngka():
 	    baca = braille()
@@ -149,25 +82,15 @@ def bacaInputAngka():
 		        baca
 	    else:
 		        return baca
-
-def bacaHuruf():
-	isi = abjad(n=bacaInputHuruf())
-	return isi
 	
 def bacaAngka():
 	isi = angka(n=bacaInputAngka())
 	return isi
 
-while True:
-	huruf = bacaHuruf() # Baca Huruf
-	if huruf == "NULL":
-		bacaHuruf()
+while True:	
+	isiangka = bacaAngka() # Baca Angka
+	if isiangka == "SALAH":
+		bacaAngka()
 	else:
-		print huruf,
-	
-##	isiangka = bacaAngka() # Baca Angka
-##	if isiangka == "SALAH":
-##		bacaAngka()
-##	else:
-##		print isiangka
+		print isiangka,
 	time.sleep(0.3)

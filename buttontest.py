@@ -41,7 +41,12 @@ def braille():
 	tom4 = str(GPIO.input(pinbtnEmpat))
 	tom5 = str(GPIO.input(pinbtnLima))
 	tom6 = str(GPIO.input(pinbtnEnam))
-	n = tom3 + tom2 + tom1 + tom4 + tom5 + tom6
+	tomvalid = str(GPIO.input(pinbtnValid))
+	tomenter = str(GPIO.input(pinbtnEnter))
+	tomdelete = str(GPIO.input(pinbtnDelete))
+	tomnext = str(GPIO.input(pinbtnNext))
+	tomback = str(GPIO.input(pinbtnPrev))
+	n = tom3 + tom2 + tom1 + tom4 + tom5 + tom6 + tomvalid + tomenter + tomdelete + tomnext + tomback
 	return n
 
 def abjad(n="111111",x=""):
