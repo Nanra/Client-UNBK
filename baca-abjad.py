@@ -29,7 +29,7 @@ while i < len(pinbtn):
     GPIO.setup(pinbtn[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
     i += 1
 
-# Deklarasi Button Functions
+## Deklarasi Button Functions
 # tombolEnter = str(GPIO.input(pinbtnEnter))
 # tombolValidasi = str(GPIO.input(pinbtnValid))
 # tombolNext = str(GPIO.input(pinbtnNext))
