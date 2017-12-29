@@ -28,8 +28,15 @@ while i < len(pinbtn):
 	GPIO.setup(pinbtn[i], GPIO.IN,pull_up_down=GPIO.PUD_UP)
 	i+=1
 
-print "Test Pembacaan Huruf"
-print "Masukkan Huruf"
+# Deklarasi Button Functions
+#tombolEnter = str(GPIO.input(pinbtnEnter))
+#tombolValidasi = str(GPIO.input(pinbtnValid))
+#tombolNext = str(GPIO.input(pinbtnNext))
+#tombolPrev = str(GPIO.input(pinbtnPrev))
+#tombolDelete = str(GPIO.input(pinbtnDelete))
+
+print "Test Pembacaan Huruf\n"
+print "Masukkan Huruf\n"
 
 ##Test Button
 #while True:
@@ -127,6 +134,8 @@ while True:
 	huruf = bacaHuruf() # Baca Huruf
 	if huruf == "NULL":
 		bacaHuruf()
+		
 	else:
 		print huruf,
+	
 	time.sleep(0.3)
