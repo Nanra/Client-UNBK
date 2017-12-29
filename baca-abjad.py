@@ -140,7 +140,7 @@ while True:
 		bacaHuruf()
 		
 	else:
-		if tombolValidasi == pressed :
+		if tombolValidasi is pressed :
 			isivalid = huruf
 			print "Isi Valid = ", isivalid
 		print huruf,
