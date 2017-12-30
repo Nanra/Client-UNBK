@@ -1,11 +1,14 @@
 #! /usr/bin/python
+
 # Section for reading braille convert to alphabet
 import RPi.GPIO as GPIO
 import time
+import subprocess as cmd
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
+suara = 'google_speech -l id '
 pressed = "0"
 isivalid = ""
 antrian = []
@@ -40,8 +43,10 @@ while i < len(pinbtn):
 # tombolPrev = str(GPIO.input(pinbtnPrev))
 # tombolDelete = str(GPIO.input(pinbtnDelete))
 
+# cmd.call('google_speech -l id "Status Semua PIN OK !"', shell=True)
 print "All Pin OK\n"
 print "Test Pembacaan Huruf\n"
+cmd.call('google_speech -l id "Sekarang silahkan masukan huruf !"', shell=True)
 print "Masukkan Huruf\n"
 
 # Test Button
@@ -138,19 +143,27 @@ def bacahuruf():
 while True:
     tombolValidasi = str(GPIO.input(pinbtnValid))
     tombolEnter = str(GPIO.input(pinbtnEnter))
+    tombolNext = str(GPIO.input(pinbtnNext))
     huruf = bacahuruf()  # Baca Huruf
     if huruf == "NULL":
         bacahuruf()
     else:
         if tombolValidasi is pressed:
             isivalid = huruf
+            suaraHuruf = suara + str(isivalid)
+            cmd.call(suaraHuruf, shell=True)
             print "Isi Valid = ", isivalid
+            # print suaraHuruf # Bug Checker
         print huruf,
     if (tombolEnter is pressed) & (isivalid is ""):
         print "Anda Belum Mengisi Huruf"
         continue
     if tombolEnter is pressed:
         antrian.append(isivalid)
-        isivalid = ""
         print "Antrian = ", antrian
+        isivalid = ""
+    if tombolNext is pressed:
+        kalimat = ''.join(antrian)
+        suaraKalimat = suara + kalimat
+        cmd.call(suaraKalimat, shell=True)
     time.sleep(0.3)
