@@ -8,13 +8,12 @@ import subprocess as cmd
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
 
-suara = 'google_speech -l id '
 pressed = "0"
 isivalid = ""
 antrian = []
 pinbtnValid = 31
-pinbtnNext = 29
-pinbtnPrev = 32
+pinbtnNext = 32
+pinbtnPrev = 29
 pinbtnDelete = 5
 pinbtnEnter = 3
 pinbtnSatu = 36
@@ -23,7 +22,7 @@ pinbtnTiga = 40
 pinbtnEmpat = 37
 pinbtnLima = 35
 pinbtnEnam = 33
-
+suara = 'google_speech -l id '
 pinbtn = [pinbtnValid, pinbtnNext,
           pinbtnPrev, pinbtnDelete,
           pinbtnEnter, pinbtnSatu,
