@@ -1,6 +1,6 @@
 #! /usr/bin/python
 
-## Section for reading braille convert to alphabet
+# Section for reading braille convert to alphabet
 
 import RPi.GPIO as GPIO
 import time
@@ -19,8 +19,10 @@ pinbtnTiga = 40
 pinbtnEmpat = 37
 pinbtnLima = 35
 pinbtnEnam = 33
-pinbtn = [pinbtnValid, pinbtnNext, pinbtnPrev, pinbtnDelete, pinbtnEnter, pinbtnSatu, pinbtnDua, pinbtnTiga
-    , pinbtnEmpat, pinbtnLima, pinbtnEnam]
+pinbtn = [pinbtnValid, pinbtnNext, pinbtnPrev,
+          pinbtnDelete, pinbtnEnter, pinbtnSatu,
+          pinbtnDua, pinbtnTiga, pinbtnEmpat,
+          pinbtnLima, pinbtnEnam]
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -31,7 +33,7 @@ while i < len(pinbtn):
     GPIO.setup(pinbtn[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
     i += 1
 
-## Deklarasi Button Functions
+# # Deklarasi Button Functions
 # tombolEnter = str(GPIO.input(pinbtnEnter))
 # tombolValidasi = str(GPIO.input(pinbtnValid))
 # tombolNext = str(GPIO.input(pinbtnNext))
@@ -66,7 +68,7 @@ def braille():
         return n
 
 
-def abjad(n="111111", x=""):
+def abjad(n="111111"):
     if n == "110111":
         x = "A"
     elif n == "100111":
@@ -126,7 +128,7 @@ def abjad(n="111111", x=""):
     return x
 
 
-def bacaInputHuruf():
+def bacainputhuruf():
     baca = braille()
     if baca is None:
         baca
@@ -134,17 +136,17 @@ def bacaInputHuruf():
         return baca
 
 
-def bacaHuruf():
-    isi = abjad(n=bacaInputHuruf())
+def bacahuruf():
+    isi = abjad(n=bacainputhuruf())
     return isi
 
 
 while True:
     tombolValidasi = str(GPIO.input(pinbtnValid))
     tombolEnter = str(GPIO.input(pinbtnEnter))
-    huruf = bacaHuruf()  # Baca Huruf
+    huruf = bacahuruf()  # Baca Huruf
     if huruf == "NULL":
-        bacaHuruf()
+        bacahuruf()
 
     else:
         if tombolValidasi is pressed:
@@ -152,8 +154,8 @@ while True:
             print "Isi Valid = ", isivalid
         print huruf,
     if tombolEnter is pressed:
-            antrian.append(isivalid)
-            isivalid = ""
-            print "Antrian = ", antrian
+        antrian.append(isivalid)
+        isivalid = ""
+        print "Antrian = ", antrian
 
     time.sleep(0.3)
