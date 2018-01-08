@@ -3,6 +3,9 @@
 import RPi.GPIO as GPIO
 import time
 
+GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
+
 pressed = "0"
 isivalid = ""
 antrian = []
@@ -18,13 +21,11 @@ pinbtnEmpat = 37
 pinbtnLima = 35
 pinbtnEnam = 33
 
-pinbtn = [pinbtnValid, pinbtnNext, pinbtnPrev,
-          pinbtnDelete, pinbtnEnter, pinbtnSatu,
-          pinbtnDua, pinbtnTiga, pinbtnEmpat,
-          pinbtnLima, pinbtnEnam]
-
-GPIO.setmode(GPIO.BOARD)
-GPIO.setwarnings(False)
+pinbtn = [pinbtnValid, pinbtnNext,
+          pinbtnPrev, pinbtnDelete,
+          pinbtnEnter, pinbtnSatu,
+          pinbtnDua, pinbtnTiga,
+          pinbtnEmpat, pinbtnLima, pinbtnEnam]
 
 # Deklarasi Button Huruf Sebagai OUTPUT
 i = 0
