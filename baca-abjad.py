@@ -1,7 +1,5 @@
 #! /usr/bin/python
-
 # Section for reading braille convert to alphabet
-
 import RPi.GPIO as GPIO
 import time
 
@@ -19,6 +17,7 @@ pinbtnTiga = 40
 pinbtnEmpat = 37
 pinbtnLima = 35
 pinbtnEnam = 33
+
 pinbtn = [pinbtnValid, pinbtnNext, pinbtnPrev,
           pinbtnDelete, pinbtnEnter, pinbtnSatu,
           pinbtnDua, pinbtnTiga, pinbtnEmpat,
@@ -41,10 +40,8 @@ while i < len(pinbtn):
 # tombolDelete = str(GPIO.input(pinbtnDelete))
 
 print "All Pin OK\n"
-
 print "Test Pembacaan Huruf\n"
 print "Masukkan Huruf\n"
-
 
 # Test Button
 # while True:
@@ -66,7 +63,6 @@ def braille():
         pass
     else:
         return n
-
 
 def abjad(n="111111"):
     if n == "110111":
@@ -127,7 +123,6 @@ def abjad(n="111111"):
         x = "NULL"
     return x
 
-
 def bacainputhuruf():
     baca = braille()
     if baca is None:
@@ -135,11 +130,9 @@ def bacainputhuruf():
     else:
         return baca
 
-
 def bacahuruf():
     isi = abjad(n=bacainputhuruf())
     return isi
-
 
 while True:
     tombolValidasi = str(GPIO.input(pinbtnValid))
@@ -147,7 +140,6 @@ while True:
     huruf = bacahuruf()  # Baca Huruf
     if huruf == "NULL":
         bacahuruf()
-
     else:
         if tombolValidasi is pressed:
             isivalid = huruf
@@ -160,5 +152,4 @@ while True:
         antrian.append(isivalid)
         isivalid = ""
         print "Antrian = ", antrian
-
     time.sleep(0.3)
