@@ -12,9 +12,9 @@ pressed = "0"
 isivalid = ""
 antrian = []
 pinbtnValid = 31
-pinbtnNext = 32
+pinbtnNext = 5
 pinbtnPrev = 29
-pinbtnDelete = 5
+pinbtnDelete = 32
 pinbtnEnter = 3
 pinbtnSatu = 36
 pinbtnDua = 38
@@ -26,6 +26,7 @@ suara = 'google_speech -l id '
 suaraEnter = "omxplayer -o local notif/Enter.ogg"
 suaraError = "omxplayer -o local notif/Error.ogg"
 suaraHapus = "omxplayer -o local notif/Hapus2.ogg"
+suaraHapus2 = "omxplayer -o local notif/Hapus.ogg"
 tandaStrip = "google_speech -l id '....Tanda Strip'"
 pinbtn = [pinbtnValid, pinbtnNext,
           pinbtnPrev, pinbtnDelete,
@@ -144,6 +145,7 @@ while True:
     tombolEnter = str(GPIO.input(pinbtnEnter))
     tombolNext = str(GPIO.input(pinbtnNext))
     tombolPrev = str(GPIO.input(pinbtnPrev))
+    tombolDelete = str(GPIO.input(pinbtnDelete))
     huruf = bacahuruf()  # Baca Huruf
     if huruf == "NULL":
         bacahuruf()
@@ -178,8 +180,20 @@ while True:
     if tombolPrev is pressed:
         cmd.call(suaraHapus, shell=True)
         antrian = []
-        print "Antrian dihapus kabeh Lur\n"
+        print "\nAntrian dihapus kabeh Lur\n"
         cmd.call('google_speech -l id "antrian telah dihapus, sekarang masukkan huruf kembali"', shell=True)
         print "Masukkan Huruf\n"
-        
+
+    if tombolDelete is pressed:
+        if len(antrian) is 0:
+            print "Antrian Kosong Bos"
+            cmd.call(suaraError, shell=True)
+            continue
+        else:
+            cmd.call(suaraHapus2, shell=True)
+            antrian.pop()
+            print antrian
+            if len(antrian) is 0:
+                cmd.call('google_speech -l id "antrian telah kosong, sekarang masukkan huruf kembali"', shell=True)
+    
     time.sleep(0.3)
