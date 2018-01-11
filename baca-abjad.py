@@ -26,6 +26,7 @@ suara = 'google_speech -l id '
 suaraEnter = "omxplayer -o local notif/Enter.ogg"
 suaraError = "omxplayer -o local notif/Error.ogg"
 suaraHapus = "omxplayer -o local notif/Hapus2.ogg"
+tandaStrip = "google_speech -l id '....Tanda Strip'"
 pinbtn = [pinbtnValid, pinbtnNext,
           pinbtnPrev, pinbtnDelete,
           pinbtnEnter, pinbtnSatu,
@@ -39,10 +40,6 @@ while i < len(pinbtn):
     i += 1
 
 # # Deklarasi Button Functions
-# tombolEnter = str(GPIO.input(pinbtnEnter))
-# tombolValidasi = str(GPIO.input(pinbtnValid))
-# tombolNext = str(GPIO.input(pinbtnNext))
-# tombolPrev = str(GPIO.input(pinbtnPrev))
 # tombolDelete = str(GPIO.input(pinbtnDelete))
 
 # cmd.call('google_speech -l id "Status Semua PIN OK !"', shell=True)
@@ -51,7 +48,7 @@ print "Test Pembacaan Huruf\n"
 cmd.call('google_speech -l id "Sekarang silahkan masukan huruf !"', shell=True)
 print "Masukkan Huruf\n"
 
-# Test Button
+# Test Button/Debugger
 # while True:
 # 	inputValue = GPIO.input(pinbtnValid)
 # 	if (inputValue == False):
@@ -154,30 +151,35 @@ while True:
         if tombolValidasi is pressed:
             isivalid = huruf
             suaraHuruf = suara + str(isivalid)
+            
             if isivalid is "-":
-                cmd.call("google_speech -l id '....Tanda Strip'", shell=True)
+                cmd.call(tandaStrip, shell=True)
             cmd.call(suaraHuruf, shell=True)
             print "Isi Valid = ", isivalid
             # print suaraHuruf # Bug Checker
         print huruf,
+        
     if (tombolEnter is pressed) & (isivalid is ""):
         print "Anda Belum Mengisi Huruf"
         cmd.call(suaraError, shell=True)
         continue
+    
     if tombolEnter is pressed:
         antrian.append(isivalid)
         cmd.call(suaraEnter, shell=True)
         print "Antrian = ", antrian
         isivalid = ""
+        
     if tombolNext is pressed:
         kalimat = ''.join(antrian)
         suaraKalimat = suara + kalimat
         cmd.call(suaraKalimat, shell=True)
+        
     if tombolPrev is pressed:
         cmd.call(suaraHapus, shell=True)
         antrian = []
         print "Antrian dihapus kabeh Lur\n"
         cmd.call('google_speech -l id "antrian telah dihapus, sekarang masukkan huruf kembali"', shell=True)
         print "Masukkan Huruf\n"
-        # cmd.call('google_speech -l id "Sekarang silahkan masukan huruf !"', shell=True)
+        
     time.sleep(0.3)
