@@ -40,9 +40,6 @@ while i < len(pinbtn):
     GPIO.setup(pinbtn[i], GPIO.IN, pull_up_down=GPIO.PUD_UP)
     i += 1
 
-# # Deklarasi Button Functions
-# tombolDelete = str(GPIO.input(pinbtnDelete))
-
 # cmd.call('google_speech -l id "Status Semua PIN OK !"', shell=True)
 print "All Pin OK\n"
 print "Test Pembacaan Huruf\n"
