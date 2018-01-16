@@ -49,6 +49,7 @@ print "Test Pembacaan Huruf\n"
 cmd.call('google_speech -l id "Sekarang silahkan masukan huruf !"', shell=True)
 print "Masukkan Huruf\n"
 
+
 # Test Button/Debugger
 # while True:
 # 	inputValue = GPIO.input(pinbtnValid)
@@ -69,6 +70,7 @@ def braille():
         pass
     else:
         return n
+
 
 def abjad(n="111111"):
     if n == "110111":
@@ -129,6 +131,7 @@ def abjad(n="111111"):
         x = "NULL"
     return x
 
+
 def bacainputhuruf():
     baca = braille()
     if baca is None:
@@ -136,9 +139,11 @@ def bacainputhuruf():
     else:
         return baca
 
+
 def bacahuruf():
     isi = abjad(n=bacainputhuruf())
     return isi
+
 
 while True:
     tombolValidasi = str(GPIO.input(pinbtnValid))
@@ -153,30 +158,30 @@ while True:
         if tombolValidasi is pressed:
             isivalid = huruf
             suaraHuruf = suara + str(isivalid)
-            
+
             if isivalid is "-":
                 cmd.call(tandaStrip, shell=True)
             cmd.call(suaraHuruf, shell=True)
             print "Isi Valid = ", isivalid
             # print suaraHuruf # Bug Checker
         print huruf,
-        
+
     if (tombolEnter is pressed) & (isivalid is ""):
         print "Anda Belum Mengisi Huruf"
         cmd.call(suaraError, shell=True)
         continue
-    
+
     if tombolEnter is pressed:
         antrian.append(isivalid)
         cmd.call(suaraEnter, shell=True)
         print "Antrian = ", antrian
         isivalid = ""
-        
+
     if tombolNext is pressed:
         kalimat = ''.join(antrian)
         suaraKalimat = suara + kalimat
         cmd.call(suaraKalimat, shell=True)
-        
+
     if tombolPrev is pressed:
         cmd.call(suaraHapus, shell=True)
         antrian = []
@@ -195,5 +200,5 @@ while True:
             print antrian
             if len(antrian) is 0:
                 cmd.call('google_speech -l id "antrian telah kosong, sekarang masukkan huruf kembali"', shell=True)
-    
+
     time.sleep(0.3)
