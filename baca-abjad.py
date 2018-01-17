@@ -180,7 +180,7 @@ while True:
 
     if tombolDelete is pressed:
         if len(antrian) is 0:
-            print "Antrian Kosong Bos"
+            print "Antrian Kosong Laek"
             cmd.call(suaraError, shell=True)
             continue
         else:
