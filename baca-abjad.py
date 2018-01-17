@@ -46,14 +46,6 @@ print "Test Pembacaan Huruf\n"
 cmd.call('google_speech -l id "Sekarang silahkan masukan huruf !"', shell=True)
 print "Masukkan Huruf\n"
 
-
-# Test Button/Debugger
-# while True:
-# 	inputValue = GPIO.input(pinbtnValid)
-# 	if (inputValue == False):
-# 		print "Tombol Ditekan"
-# 		time.sleep(0.3)
-
 # Fungsi Baca Kode Braille
 def braille():
     tom1 = str(GPIO.input(pinbtnSatu))
