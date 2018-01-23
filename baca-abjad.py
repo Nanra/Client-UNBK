@@ -46,6 +46,7 @@ print "Test Pembacaan Huruf\n"
 cmd.call('google_speech -l id "Sekarang silahkan masukan huruf !"', shell=True)
 print "Masukkan Huruf\n"
 
+
 # Fungsi Baca Kode Braille
 def braille():
     tom1 = str(GPIO.input(pinbtnSatu))
