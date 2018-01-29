@@ -1,4 +1,4 @@
-#! /usr/bin/python
+#!/usr/bin/python
 
 # Section for reading braille convert to alphabet
 import RPi.GPIO as GPIO
