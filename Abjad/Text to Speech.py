@@ -5,5 +5,5 @@ while True:
     text = raw_input('Masukkan text : ')
 
     tts = gTTS(text, lang='id')
-    tts.save(nama + '.mp3')
-    print ("\nData {}.mp3 Tersimpan").format(nama)
+    tts.save(nama + '.ogg')
+    print ("\nData {}.ogg Tersimpan").format(nama)
