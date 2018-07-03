@@ -27,6 +27,7 @@ suaraEnter = "omxplayer -o local notif/Enter.ogg"
 suaraError = "omxplayer -o local notif/Error.ogg"
 suaraHapus = "omxplayer -o local notif/Hapus2.ogg"
 suaraHapus2 = "omxplayer -o local notif/Hapus.ogg"
+belum = "omxplayer -o local notif/belum.ogg"
 tandaStrip = "google_speech -l id '....Tanda Strip'"
 pinbtn = [pinbtnValid, pinbtnNext,
           pinbtnPrev, pinbtnDelete,
@@ -43,7 +44,13 @@ while i < len(pinbtn):
 # cmd.call('google_speech -l id "Status Semua PIN OK !"', shell=True)
 print "All Pin OK\n"
 print "Test Pembacaan Huruf\n"
-cmd.call('google_speech -l id "Sekarang silahkan masukan huruf !"', shell=True)
+cmd.call('google_speech -l id "Ini Adalah Menu Pengisian Nama. Isi Nama Anda Dengan Benar"', shell=True)
+cmd.call('google_speech -l id "Masukkan Kode Huruf Terlebih Dahulu"', shell=True)
+cmd.call('google_speech -l id "Kemudian Teekan Tombol Validasi Untuk Memilih Huruf"', shell=True)
+cmd.call('google_speech -l id "Teekan Tombol Enter Untuk Menyimpan Huruf Yang Dipilih"', shell=True)
+cmd.call('google_speech -l id "Jika kode huruf tidak sesuai, silahkan teekan tombol hapus"', shell=True)
+cmd.call('google_speech -l id "Kemudian Jika Nama sudah sesuai, silahkan tekan tombol Next untuk lanjut ke tahap pengisian nomor ujian"', shell=True)
+cmd.call('google_speech -l id "Sekarang silahkan masukkan kode huruf"', shell=True)
 print "Masukkan Huruf\n"
 
 
@@ -61,10 +68,10 @@ def braille():
     else:
         return n
 
-
 def abjad(n="111111"):
     if n == "110111":
         x = "A"
+        #ejaHuruf = "omxplayer -o local Abjad/A.mp3"
     elif n == "100111":
         x = "B"
     elif n == "110011":
@@ -147,7 +154,6 @@ while True:
         if tombolValidasi is pressed:
             isivalid = huruf
             suaraHuruf = suara + str(isivalid)
-            tombolValidasi = "1"
 
             if isivalid is "-":
                 cmd.call(tandaStrip, shell=True)
@@ -160,7 +166,7 @@ while True:
     if (tombolEnter is pressed) & (isivalid is ""):
         print "Anda Belum Mengisi Huruf"
         cmd.call(suaraError, shell=True)
-        cmd.call('google_speech -l id "Masukkan Kode Huruf Terlebih Dahulu"', shell=True)
+        cmd.call(belum, shell=True)
         continue
 
     if tombolEnter is pressed:
@@ -176,7 +182,6 @@ while True:
         cmd.call('google_speech -l id "Anda belum mengisikan nama!,,.. Isi nama terlebih dahulu !"', shell=True)
         continue
 
-        
 
     if tombolNext is pressed:
         kalimat = ''.join(antrian)
