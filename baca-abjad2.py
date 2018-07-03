@@ -134,7 +134,6 @@ def bacahuruf():
     isi = abjad(n=bacainputhuruf())
     return isi
 
-
 while True:
     tombolValidasi = str(GPIO.input(pinbtnValid))
     tombolEnter = str(GPIO.input(pinbtnEnter))
@@ -148,6 +147,7 @@ while True:
         if tombolValidasi is pressed:
             isivalid = huruf
             suaraHuruf = suara + str(isivalid)
+            tombolValidasi = "1"
 
             if isivalid is "-":
                 cmd.call(tandaStrip, shell=True)
@@ -160,18 +160,40 @@ while True:
     if (tombolEnter is pressed) & (isivalid is ""):
         print "Anda Belum Mengisi Huruf"
         cmd.call(suaraError, shell=True)
+        cmd.call('google_speech -l id "Masukkan Kode Huruf Terlebih Dahulu"', shell=True)
         continue
 
     if tombolEnter is pressed:
+        print "Huruf telah disimpan ke antrian"
         antrian.append(isivalid)
         cmd.call(suaraEnter, shell=True)
         print "Antrian = ", antrian
         isivalid = ""
 
+    if (tombolNext is pressed) & (len(antrian) == 0):
+        print "Anda tidak bisa lanjutkan, Antrian masih kosong"
+        cmd.call(suaraError, shell=True)
+        cmd.call('google_speech -l id "Anda belum mengisikan nama!,,.. Isi nama terlebih dahulu !"', shell=True)
+        continue
+
+        
+
     if tombolNext is pressed:
         kalimat = ''.join(antrian)
-        suaraKalimat = suara + kalimat
+        kalimat = '"Nama Anda Adalah : "' + kalimat
+        suaraKalimat = suara + kalimat + '",,.. Apakah Nama Tersebut benar ?"'
         cmd.call(suaraKalimat, shell=True)
+        cmd.call('google_speech -l id "Pilih tombol validasi jika benar"', shell=True)
+        time.sleep(2)
+        # Konfirmasi Nama ( Baru sampai disini besok lanjut lagi)
+        tombolValidasi2 = str(GPIO.input(pinbtnValid))
+        print tombolValidasi2
+        if tombolValidasi2 is pressed:
+            print "Y"
+            cmd.call('google_speech -l id "Anda menekan tombol validasi"', shell=True)
+            break
+        else:
+            continue
 
     if tombolPrev is pressed:
         cmd.call(suaraHapus, shell=True)
